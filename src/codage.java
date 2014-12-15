@@ -18,6 +18,40 @@ public class codage {
         return ret;
     }
 
+
+    public long pgcd (long a, long b) {
+        if (b == 0) {
+            return a;
+        }
+
+        return pgcd(b, a - b * (a / b));
+    }
+
+
+    public long[] bezout (long a, long b) {
+        long[] bez;
+        long x, y;
+
+        if (a == 0 && b == 0) {
+            return new long[] {0, 0};
+        }
+
+        if (b == 0) {
+            return new long[] {1, 0};
+        }
+
+        if (a == 0 || a % b == 0) {
+            return new long[] {0, 1};
+        }
+
+        bez = bezout(b, a % b);
+        x = bez[0];
+        y = bez[1];
+
+        return new long[] {y, x - y * (a / b)};
+    }
+
+
     public static void main(String[] args)
     {
         codage c=new codage();
